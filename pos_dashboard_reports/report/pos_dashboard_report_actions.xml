@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_pos_dashboard_pdf" model="ir.actions.report">
+        <field name="name">Laporan POS Dashboard</field>
+        <field name="model">pos.dashboard.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_dashboard_reports.report_pos_dashboard_document</field>
+        <field name="report_file">pos_dashboard_reports.report_pos_dashboard_document</field>
+        <field name="print_report_name">'Laporan POS - %s' % (object.report_key or '')</field>
+        <field name="binding_model_id" ref="model_pos_dashboard_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

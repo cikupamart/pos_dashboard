@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pos_dashboard_document">
+        <t t-call="web.html_container">
+            <t t-foreach="entries" t-as="entry">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h2><t t-esc="entry['label']"/></h2>
+                        <p>
+                            Periode:
+                            <span t-esc="entry['wizard'].date_from"/>
+                            s/d
+                            <span t-esc="entry['wizard'].date_to"/>
+                        </p>
+
+                        <t t-if="entry['data'].get('columns')">
+                            <table class="table table-sm table-bordered" style="font-size:11px;">
+                                <thead>
+                                    <tr>
+                                        <t t-foreach="entry['data']['columns']" t-as="col">
+                                            <th><t t-esc="col[1]"/></th>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="entry['data']['rows']" t-as="row">
+                                        <t t-foreach="entry['data']['columns']" t-as="col">
+                                            <td><t t-esc="row.get(col[0])"/></td>
+                                        </t>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <t t-elif="entry['data'].get('kpi')">
+                            <table class="table table-sm table-bordered" style="width:50%;">
+                                <tbody>
+                                    <tr><td>Jumlah Order</td><td><t t-esc="entry['data']['kpi']['order_count']"/></td></tr>
+                                    <tr><td>Total Penjualan</td><td><t t-esc="entry['data']['kpi']['revenue']"/></td></tr>
+                                    <tr><td>Pajak</td><td><t t-esc="entry['data']['kpi']['tax']"/></td></tr>
+                                    <tr><td>Rata-rata / Transaksi</td><td><t t-esc="entry['data']['kpi']['avg_basket']"/></td></tr>
+                                </tbody>
+                            </table>
+
+                            <t t-if="entry['data'].get('top_kasir')">
+                                <h4>Top Kasir</h4>
+                                <table class="table table-sm table-bordered">
+                                    <tr t-foreach="entry['data']['top_kasir']" t-as="k">
+                                        <td><t t-esc="k['cashier']"/></td>
+                                        <td><t t-esc="k['revenue']"/></td>
+                                    </tr>
+                                </table>
+                            </t>
+                            <t t-if="entry['data'].get('top_category')">
+                                <h4>Top Kategori</h4>
+                                <table class="table table-sm table-bordered">
+                                    <tr t-foreach="entry['data']['top_category']" t-as="cat">
+                                        <td><t t-esc="cat['category_name']"/></td>
+                                        <td><t t-esc="cat['amount_total']"/></td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

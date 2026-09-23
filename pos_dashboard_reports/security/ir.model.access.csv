@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_dashboard_category_map_user,pos.dashboard.category.map.user,model_pos_dashboard_category_map,group_pos_dashboard_user,1,0,0,0
+access_pos_dashboard_category_map_manager,pos.dashboard.category.map.manager,model_pos_dashboard_category_map,group_pos_dashboard_manager,1,1,1,1
+access_pos_dashboard_report_wizard_user,pos.dashboard.report.wizard.user,model_pos_dashboard_report_wizard,group_pos_dashboard_user,1,1,1,1

@@ -1,0 +1,277 @@
+/* ==========================================================================
+   POS Dashboard - visual design tokens
+   Palette chosen for an amusement-park / leisure POS context: teal reads as
+   the primary "money" color, amber/rose pick up the ticket & rides energy
+   without leaning on the generic AI-orange or SaaS-purple defaults.
+   ========================================================================== */
+.o_pd {
+    --pd-bg: #F2F4FA;
+    --pd-surface: #FFFFFF;
+    --pd-ink: #131A2B;
+    --pd-muted: #6B7280;
+    --pd-border: #E5E9F3;
+    --pd-primary: #0D9488;
+    --pd-primary-dark: #0B7A70;
+    --pd-indigo: #4F46E5;
+    --pd-amber: #C2760C;
+    --pd-rose: #E11D5F;
+    --pd-radius: 14px;
+    --pd-shadow: 0 1px 2px rgba(19,26,43,.04), 0 8px 24px -12px rgba(19,26,43,.12);
+
+    background: var(--pd-bg);
+    color: var(--pd-ink);
+    font-size: 14px;
+    line-height: 1.45;
+    height: 100%;
+    overflow: auto;
+    padding: 0 0 32px 0;
+}
+
+/* -------------------------------------------------------------------- hero */
+.o_pd_hero {
+    background: linear-gradient(120deg, var(--pd-primary-dark) 0%, var(--pd-primary) 55%, var(--pd-indigo) 130%);
+    color: #fff;
+    padding: 28px 32px 44px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-radius: 0 0 22px 22px;
+}
+.o_pd_hero_eyebrow {
+    display: block;
+    font-size: 12.5px;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 4px;
+}
+.o_pd_hero_title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -.01em;
+}
+.o_pd_hero_sub {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+    color: rgba(255,255,255,.8);
+}
+.o_pd_hero_actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ---------------------------------------------------------------- toolbar */
+.o_pd_toolbar {
+    background: var(--pd-surface);
+    border: 1px solid var(--pd-border);
+    box-shadow: var(--pd-shadow);
+    border-radius: var(--pd-radius);
+    margin: -26px 32px 24px 32px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+.o_pd_field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+}
+.o_pd_field_grow { flex: 1 1 220px; }
+.o_pd_field_label {
+    font-size: 12px;
+    color: var(--pd-muted);
+}
+.o_pd_select, .o_pd_input {
+    border: 1px solid var(--pd-border);
+    border-radius: 9px;
+    padding: 7px 10px;
+    font-size: 13.5px;
+    color: var(--pd-ink);
+    background: #FBFCFE;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+.o_pd_select_multi { min-height: 74px; }
+.o_pd_select:focus, .o_pd_input:focus {
+    border-color: var(--pd-primary);
+    box-shadow: 0 0 0 3px rgba(13,148,136,.15);
+}
+
+/* ------------------------------------------------------------------ buttons */
+.o_pd_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 9px;
+    padding: 8px 16px;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .1s ease, box-shadow .15s ease, background .15s ease;
+    white-space: nowrap;
+}
+.o_pd_btn:active { transform: translateY(1px); }
+.o_pd_btn_primary {
+    background: var(--pd-ink);
+    color: #fff;
+}
+.o_pd_btn_primary:hover { background: #232C42; }
+.o_pd_btn_ghost {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.4);
+    color: #fff;
+}
+.o_pd_btn_ghost:hover { background: rgba(255,255,255,.22); }
+.o_pd_icon { width: 15px; height: 15px; }
+
+/* ------------------------------------------------------------------ loading */
+.o_pd_loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 40px 32px;
+    color: var(--pd-muted);
+}
+.o_pd_spinner {
+    width: 16px; height: 16px;
+    border: 2px solid var(--pd-border);
+    border-top-color: var(--pd-primary);
+    border-radius: 50%;
+    animation: pd-spin .7s linear infinite;
+}
+@keyframes pd-spin { to { transform: rotate(360deg); } }
+
+/* --------------------------------------------------------------------- body */
+.o_pd_body { padding: 0 32px; }
+
+/* ----------------------------------------------------------------------kpis */
+.o_pd_kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.o_pd_kpi {
+    background: var(--pd-surface);
+    border: 1px solid var(--pd-border);
+    border-radius: var(--pd-radius);
+    box-shadow: var(--pd-shadow);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.o_pd_kpi:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(19,26,43,.06), 0 14px 28px -14px rgba(19,26,43,.18); }
+.o_pd_kpi_icon {
+    width: 20px; height: 20px;
+    flex: 0 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: content-box;
+}
+.o_pd_kpi_indigo .o_pd_kpi_icon { color: var(--pd-indigo); background: rgba(79,70,229,.1); }
+.o_pd_kpi_teal .o_pd_kpi_icon   { color: var(--pd-primary); background: rgba(13,148,136,.1); }
+.o_pd_kpi_amber .o_pd_kpi_icon  { color: var(--pd-amber); background: rgba(194,118,12,.12); }
+.o_pd_kpi_rose .o_pd_kpi_icon   { color: var(--pd-rose); background: rgba(225,29,95,.1); }
+.o_pd_kpi_text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.o_pd_kpi_value {
+    font-size: 21px;
+    font-weight: 650;
+    letter-spacing: -.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.o_pd_kpi_label { font-size: 12.5px; color: var(--pd-muted); }
+
+/* -------------------------------------------------------------------- cards */
+.o_pd_card {
+    background: var(--pd-surface);
+    border: 1px solid var(--pd-border);
+    border-radius: var(--pd-radius);
+    box-shadow: var(--pd-shadow);
+    padding: 16px 18px 18px 18px;
+}
+.o_pd_card_title {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--pd-ink);
+    margin-bottom: 10px;
+}
+
+/* ------------------------------------------------------------------- charts */
+.o_pd_charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.o_pd_charts_single { grid-template-columns: 1fr; }
+.o_pd_chart_wrap { position: relative; height: 260px; }
+.o_pd_chart_wrap canvas { max-width: 100%; }
+
+.o_pd_subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------------- table */
+.o_pd_table_card { padding: 0; overflow: hidden; }
+.o_pd_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.o_pd_table thead th {
+    position: sticky;
+    top: 0;
+    background: #F8F9FD;
+    color: var(--pd-muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--pd-border);
+    white-space: nowrap;
+}
+.o_pd_table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--pd-border);
+    color: var(--pd-ink);
+}
+.o_pd_table tr:last-child td { border-bottom: none; }
+.o_pd_table_striped tbody tr:nth-child(even) { background: #FAFBFE; }
+.o_pd_table_striped tbody tr:hover { background: rgba(13,148,136,.06); }
+.o_pd_num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.o_pd_empty {
+    padding: 32px;
+    text-align: center;
+    color: var(--pd-muted);
+}
+
+.o_pd_alert {
+    background: #FEF2F2;
+    border: 1px solid #FCA5A5;
+    color: #991B1B;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 12px;
+}
+
+/* ------------------------------------------------------------------ mobile */
+@media (max-width: 780px) {
+    .o_pd_hero { padding: 22px 18px 38px 18px; }
+    .o_pd_toolbar { margin: -22px 18px 20px 18px; }
+    .o_pd_body { padding: 0 18px; }
+}

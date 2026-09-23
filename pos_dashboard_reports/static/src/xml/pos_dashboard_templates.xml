@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="pos_dashboard_reports.Dashboard" owl="1">
+    <div class="o_pd">
+
+        <div class="o_pd_hero">
+            <div class="o_pd_hero_text">
+                <span class="o_pd_hero_eyebrow">POS Dashboard</span>
+                <h1 class="o_pd_hero_title"><t t-esc="reportLabel"/></h1>
+                <p class="o_pd_hero_sub">
+                    <t t-esc="state.dateFrom"/> &#8594; <t t-esc="state.dateTo"/>
+                </p>
+            </div>
+            <div class="o_pd_hero_actions">
+                <button class="o_pd_btn o_pd_btn_ghost" t-on-click="onExportXlsx">
+                    <svg viewBox="0 0 24 24" class="o_pd_icon"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Export Excel
+                </button>
+            </div>
+        </div>
+
+        <div class="o_pd_toolbar">
+            <div class="o_pd_field">
+                <span class="o_pd_field_label">Laporan</span>
+                <select class="o_pd_select" t-on-change="(ev) => this.onFilterChange('reportKey', ev)">
+                    <t t-foreach="state.meta.reports" t-as="r" t-key="r.key">
+                        <option t-att-value="r.key" t-att-selected="r.key === state.reportKey">
+                            <t t-esc="r.label"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+
+            <div class="o_pd_field">
+                <span class="o_pd_field_label">Dari</span>
+                <input type="date" class="o_pd_input" t-att-value="state.dateFrom"
+                       t-on-change="(ev) => this.onFilterChange('dateFrom', ev)"/>
+            </div>
+            <div class="o_pd_field">
+                <span class="o_pd_field_label">Sampai</span>
+                <input type="date" class="o_pd_input" t-att-value="state.dateTo"
+                       t-on-change="(ev) => this.onFilterChange('dateTo', ev)"/>
+            </div>
+
+            <div class="o_pd_field o_pd_field_grow">
+                <span class="o_pd_field_label">POS</span>
+                <select multiple="multiple" class="o_pd_select o_pd_select_multi"
+                        t-on-change="(ev) => this.onMultiChange('configIds', ev)">
+                    <t t-foreach="state.meta.configs" t-as="c" t-key="c.id">
+                        <option t-att-value="c.id"><t t-esc="c.name"/></option>
+                    </t>
+                </select>
+            </div>
+
+            <button class="o_pd_btn o_pd_btn_primary" t-on-click="onApply">
+                <svg viewBox="0 0 24 24" class="o_pd_icon"><path d="M21 21l-4.35-4.35M18 11a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Tampilkan
+            </button>
+        </div>
+
+        <div t-if="state.loading" class="o_pd_loading">
+            <span class="o_pd_spinner"/> Memuat data...
+        </div>
+
+        <div t-if="!state.loading and state.data" class="o_pd_body">
+
+            <!-- KPI style report (analisis / direksi) -->
+            <t t-if="state.data.kpi">
+                <div class="o_pd_kpis">
+                    <div class="o_pd_kpi o_pd_kpi_indigo">
+                        <svg viewBox="0 0 24 24" class="o_pd_kpi_icon"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div class="o_pd_kpi_text">
+                            <span class="o_pd_kpi_value"><t t-esc="state.data.kpi.order_count"/></span>
+                            <span class="o_pd_kpi_label">Jumlah Order</span>
+                        </div>
+                    </div>
+                    <div class="o_pd_kpi o_pd_kpi_teal">
+                        <svg viewBox="0 0 24 24" class="o_pd_kpi_icon"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div class="o_pd_kpi_text">
+                            <span class="o_pd_kpi_value"><t t-esc="state.data.kpi.revenue.toLocaleString()"/></span>
+                            <span class="o_pd_kpi_label">Total Penjualan</span>
+                        </div>
+                    </div>
+                    <div class="o_pd_kpi o_pd_kpi_amber">
+                        <svg viewBox="0 0 24 24" class="o_pd_kpi_icon"><path d="M9 14l2 2 4-4M3 7l2-4h14l2 4M3 7h18M3 7l1 12a1 1 0 001 1h14a1 1 0 001-1l1-12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div class="o_pd_kpi_text">
+                            <span class="o_pd_kpi_value"><t t-esc="state.data.kpi.tax.toLocaleString()"/></span>
+                            <span class="o_pd_kpi_label">Pajak</span>
+                        </div>
+                    </div>
+                    <div class="o_pd_kpi o_pd_kpi_rose">
+                        <svg viewBox="0 0 24 24" class="o_pd_kpi_icon"><path d="M3 3v18h18M7 15l4-4 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div class="o_pd_kpi_text">
+                            <span class="o_pd_kpi_value"><t t-esc="state.data.kpi.avg_basket.toLocaleString()"/></span>
+                            <span class="o_pd_kpi_label">Rata-rata / Transaksi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="o_pd_charts">
+                    <div class="o_pd_card o_pd_chart_card">
+                        <span class="o_pd_card_title">Tren Penjualan</span>
+                        <div class="o_pd_chart_wrap"><canvas t-ref="chartMain"/></div>
+                    </div>
+                    <div class="o_pd_card o_pd_chart_card">
+                        <span class="o_pd_card_title">Kategori Teratas</span>
+                        <div class="o_pd_chart_wrap"><canvas t-ref="chartSecondary"/></div>
+                    </div>
+                </div>
+
+                <div class="o_pd_subgrid">
+                    <div t-if="state.data.top_kasir" class="o_pd_card">
+                        <span class="o_pd_card_title">Top Kasir</span>
+                        <table class="o_pd_table">
+                            <tr t-foreach="state.data.top_kasir" t-as="k" t-key="k.user_id">
+                                <td><t t-esc="k.cashier"/></td>
+                                <td class="o_pd_num"><t t-esc="k.revenue.toLocaleString()"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div t-if="state.data.top_category" class="o_pd_card">
+                        <span class="o_pd_card_title">Top Kategori</span>
+                        <table class="o_pd_table">
+                            <tr t-foreach="state.data.top_category" t-as="cat" t-key="cat.categ_id">
+                                <td><t t-esc="cat.category_name"/></td>
+                                <td class="o_pd_num"><t t-esc="cat.amount_total.toLocaleString()"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Table style report (14 of the 16 reports) -->
+            <t t-if="state.data.columns">
+                <div t-if="state.data.chart" class="o_pd_charts o_pd_charts_single">
+                    <div class="o_pd_card o_pd_chart_card">
+                        <span class="o_pd_card_title">Grafik</span>
+                        <div class="o_pd_chart_wrap"><canvas t-ref="chartMain"/></div>
+                    </div>
+                </div>
+                <div class="o_pd_card o_pd_table_card">
+                    <table class="o_pd_table o_pd_table_striped">
+                        <thead>
+                            <tr>
+                                <t t-foreach="state.data.columns" t-as="col" t-key="col[0]">
+                                    <th><t t-esc="col[1]"/></th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="state.data.rows" t-as="row" t-key="row_index">
+                                <t t-foreach="state.data.columns" t-as="col" t-key="col[0]">
+                                    <td><t t-esc="row[col[0]]"/></td>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div t-if="!state.data.rows.length" class="o_pd_empty">
+                        Tidak ada data pada periode ini.
+                    </div>
+                </div>
+            </t>
+
+            <div t-if="state.data.error" class="o_pd_alert">
+                <t t-esc="state.data.error"/>
+            </div>
+        </div>
+    </div>
+</t>
+
+</templates>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_pos_dashboard" model="ir.module.category">
+        <field name="name">POS Dashboard</field>
+        <field name="sequence">25</field>
+    </record>
+
+    <record id="group_pos_dashboard_user" model="res.groups">
+        <field name="name">Dashboard User (Lihat &amp; Export Laporan)</field>
+        <field name="category_id" ref="module_category_pos_dashboard"/>
+        <field name="implied_ids" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="group_pos_dashboard_manager" model="res.groups">
+        <field name="name">Dashboard Manager (Konfigurasi Mapping Kategori)</field>
+        <field name="category_id" ref="module_category_pos_dashboard"/>
+        <field name="implied_ids" eval="[(4, ref('group_pos_dashboard_user')), (4, ref('point_of_sale.group_pos_manager'))]"/>
+    </record>
+</odoo>

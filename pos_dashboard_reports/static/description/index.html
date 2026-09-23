@@ -1,0 +1,56 @@
+<section class="oe_container">
+    <h2 class="oe_slogan">POS Dashboard &amp; Reporting Suite</h2>
+    <h3 class="oe_slogan" style="font-size:16px;font-weight:normal;color:#666;">
+        Dashboard &amp; 16 laporan Point of Sale — ringan, dengan grafik interaktif dan export Excel/PDF
+    </h3>
+</section>
+
+<section class="oe_container oe_dark">
+    <h2 class="oe_slogan">Fitur Utama</h2>
+    <div class="oe_row oe_spaced">
+        <ul>
+            <li><strong>Dashboard interaktif</strong> — ganti laporan, rentang tanggal, POS, dan kasir dari satu layar, dengan grafik Chart.js.</li>
+            <li><strong>16 laporan siap pakai</strong> — order, penjualan, pajak, per kasir, per kategori/tenant/rides/bracelet/ticket, akuntansi, hingga ringkasan direksi.</li>
+            <li><strong>Export Excel &amp; PDF</strong> untuk semua laporan, memakai query yang sama persis dengan yang tampil di layar.</li>
+            <li><strong>Mapping kategori</strong> — tandai kategori produk sebagai Tenant / Rides / Bracelet / Ticket / Bundling tanpa perlu field custom baru.</li>
+            <li><strong>Ringan</strong> — seluruh angka dihitung dengan SQL agregat (SUM/GROUP BY) yang difilter tanggal &amp; company, bukan membaca seluruh tabel transaksi.</li>
+            <li><strong>2 level akses</strong> — Dashboard User (lihat &amp; export) dan Dashboard Manager (+ atur mapping kategori).</li>
+        </ul>
+    </div>
+</section>
+
+<section class="oe_container">
+    <h2 class="oe_slogan">16 Laporan</h2>
+    <table class="table table-striped" style="width:100%;">
+        <thead>
+            <tr><th>Laporan</th><th>Fungsi</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Reporting Orders</td><td>Daftar order POS + tren harian.</td></tr>
+            <tr><td>POS Payment Analysis</td><td>Rekap penerimaan per metode pembayaran (cash/kartu/QRIS) + persentase kontribusi.</td></tr>
+            <tr><td>Sales Detail</td><td>Rincian penjualan level baris item.</td></tr>
+            <tr><td>Sale Report</td><td>Rekap penjualan per produk, semua kategori.</td></tr>
+            <tr><td>Sale per Kasir Report</td><td>Performa penjualan tiap kasir.</td></tr>
+            <tr><td>Sale Ticket Report</td><td>Rekap penjualan kategori Ticket.</td></tr>
+            <tr><td>Sale Ticket Tax Report</td><td>Rekap tiket + rincian DPP, pajak, dan tarif.</td></tr>
+            <tr><td>Sale Tenant Report</td><td>Rekap penjualan per tenant/penyewa.</td></tr>
+            <tr><td>Sale Rides Report</td><td>Rekap penjualan per wahana (rides).</td></tr>
+            <tr><td>Bracelet Report</td><td>Rekap penjualan gelang akses.</td></tr>
+            <tr><td>Transaction Ticket Report</td><td>Daftar struk yang mengandung item Ticket (level transaksi).</td></tr>
+            <tr><td>Summary Product Category / COA Report</td><td>Rekap per kategori produk + akun pendapatan (COA) terkait.</td></tr>
+            <tr><td>Direksi Report</td><td>Ringkasan eksekutif: KPI, tren, top kasir &amp; top kategori. Laporan default.</td></tr>
+            <tr><td>Sale Order Report</td><td>Rekap per sesi kasir (buka/tutup, total, pajak).</td></tr>
+            <tr><td>Accounting Report</td><td>Rekap penerimaan per metode pembayaran &amp; jurnal akuntansi.</td></tr>
+            <tr><td>Bundling Transaction Report</td><td>Daftar struk yang mengandung item Bundling (level transaksi).</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="oe_container oe_dark">
+    <h2 class="oe_slogan">Catatan Setelah Instalasi</h2>
+    <p>
+        Buka menu <strong>POS Dashboard &gt; Konfigurasi &gt; Mapping Kategori Laporan</strong>
+        dan petakan kategori produk Anda ke tipe Tenant / Rides / Bracelet / Ticket / Bundling
+        agar laporan-laporan terkait langsung terisi data.
+    </p>
+</section>

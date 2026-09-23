@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_dashboard_category_map_tree" model="ir.ui.view">
+        <field name="name">pos.dashboard.category.map.tree</field>
+        <field name="model">pos.dashboard.category.map</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="category_id"/>
+                <field name="report_group"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pos_dashboard_category_map" model="ir.actions.act_window">
+        <field name="name">Mapping Kategori Laporan</field>
+        <field name="res_model">pos.dashboard.category.map</field>
+        <field name="view_mode">tree</field>
+        <field name="help">
+            Petakan kategori produk ke tipe laporan (Tenant, Rides, Bracelet,
+            Ticket, Bundling) supaya laporan-laporan tersebut otomatis
+            terisi tanpa perlu menambah field baru di produk.
+        </field>
+    </record>
+</odoo>
