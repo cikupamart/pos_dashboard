@@ -4,7 +4,7 @@
     "version": "16.0.1.0.0",
     "category": "Point of Sale",
     "summary": "Dashboard POS ringan: grafik interaktif, 16 laporan siap export Excel/PDF, mapping kategori Tenant/Rides/Bracelet/Ticket",
-    'price': 19.99,
+    'price': 11.99,
     'currency': 'EUR',
     "description": """
 POS Dashboard & Reporting Suite
